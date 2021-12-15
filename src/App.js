@@ -1,24 +1,84 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import { Box, Center, ChakraProvider, Stack } from "@chakra-ui/react";
+import SectionInput from "./Components/Question/SectionCard/SectionInput";
+import QuestionCard from "./Components/Question/QuesCard/QuestionCard";
+import VerticalBar from "./Components/Question/QuesCard/VerticalBar";
+import CardLayout from "./Components/Question/QuesCard/CardLayout";
+import SectionCard from "./Components/Question/SectionCard/SectionCard";
 
 function App() {
+  const [sectionList, setSectionList] = useState([]);
+  const [isNewSection, setIsNewSection] = useState(true);
+
+  const addQues = (quesIndex, i, ques) => {
+    sectionList[i].quesSet.push(ques);
+    const sectList = sectionList.map((item) => {
+      return item;
+    });
+    setSectionList(sectList);
+  };
+
+  const deleteQues = (sectionIndex, quesIndex) => {
+    console.log("deletequesIndex");
+    console.log(quesIndex);
+    sectionList[sectionIndex].quesSet.splice(quesIndex,1);
+    const sectList = sectionList.map((item) =>item);
+    setSectionList(sectList);
+  };
+
+  const handleIsNewSection = (value) => {
+    setIsNewSection(value);
+  };
+
+  const addSection = (sectionName, desc) => {
+    const sect = {
+      sectionName: sectionName,
+      description: desc,
+      quesSet:[{data:'1'}],
+    };
+    sectionList.push(sect);
+    const newList = sectionList.map((item) => {
+      return item;
+    });
+    setSectionList(newList);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider>
+      <Box p="3rem">
+        <Box fontSize="1.5rem" mb="0.5rem">
+          Create Question
+        </Box>
+        <Box borderBottom="1px solid #733D47" transform="rotate(-180deg)"></Box>
+        <Box p="1rem">
+          <Center>
+            <Stack spacing="2rem">
+              {sectionList.map((item, i) => {
+                return (
+                  <SectionCard
+                    key={item.sectionName}
+                    sectionName={item.sectionName}
+                    description={item.description}
+                    quesSet={item.quesSet}
+                    addSection={addSection}
+                    handleIsNewSection={handleIsNewSection}
+                    sectionIndex={i}
+                    addQues={addQues}
+                    deleteQues={deleteQues}
+                  />
+                );
+              })}
+              {isNewSection && (
+                <SectionInput
+                  addSection={addSection}
+                  handleIsNewSection={handleIsNewSection}
+                />
+              )}
+            </Stack>
+          </Center>
+        </Box>
+      </Box>
+    </ChakraProvider>
   );
 }
 
