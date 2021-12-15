@@ -24,6 +24,13 @@ function App() {
     console.log(quesIndex);
     // sectionList[sectionIndex].quesSet.splice(quesIndex,1);
     delete sectionList[sectionIndex].quesSet[quesIndex];
+    console.log("quesSetLength");
+    console.log(sectionList[sectionIndex].quesSet.length);
+    if(sectionList[sectionIndex].quesSet.length===1)
+    {
+      delete sectionList[sectionIndex];
+      setIsNewSection(true);
+    }
     const sectList = sectionList.map((item) =>item);
     setSectionList(sectList);
   };
