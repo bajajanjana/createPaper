@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button, Input, Stack, Textarea } from "@chakra-ui/react";
+import { Box, Button, FormControl, Input, Stack, Textarea } from "@chakra-ui/react";
 
 function SectionInput(props) {
   const [sectionName, setSectionName] = useState();
@@ -12,7 +12,9 @@ function SectionInput(props) {
       p="2rem"
     >
       <Stack spacing={3}>
+        <FormControl isRequired>
         <Input
+          id="section_name"
           placeholder="Section Name"
           fontSize="2rem"
           variant="unstyled"
@@ -22,6 +24,7 @@ function SectionInput(props) {
             setSectionName(e.target.value);
           }}
           value={sectionName}
+          required
         />
         <Textarea
           placeholder="Description(Optional)"
@@ -34,17 +37,24 @@ function SectionInput(props) {
           value={description}
         />
         <Button
+          type="submit"
           variant="outline"
           w="6rem"
           color="#F2D8D5"
           background="#733D47"
           onClick={() => {
+            if(document.getElementById('section_name').value=='')
+            {
+              alert("Please Enter the Section Name...!!");
+              return;
+            }
             props.addSection(sectionName, description);
             props.handleIsNewSection(false);
           }}
         >
           Create
         </Button>
+        </FormControl>
       </Stack>
     </Box>
   );

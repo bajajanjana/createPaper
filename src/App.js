@@ -11,18 +11,19 @@ function App() {
   const [sectionList, setSectionList] = useState([]);
   const [isNewSection, setIsNewSection] = useState(true);
 
-  const addQues = (quesIndex, i, ques) => {
-    sectionList[i].quesSet.push(ques);
+  const addQues = (quesIndex,i) => {
+    sectionList[i].quesSet.push({id:'1'});
     const sectList = sectionList.map((item) => {
       return item;
     });
     setSectionList(sectList);
   };
 
-  const deleteQues = (sectionIndex, quesIndex) => {
+  const deleteQues = (sectionIndex,quesIndex) => {
     console.log("deletequesIndex");
     console.log(quesIndex);
-    sectionList[sectionIndex].quesSet.splice(quesIndex,1);
+    // sectionList[sectionIndex].quesSet.splice(quesIndex,1);
+    delete sectionList[sectionIndex].quesSet[quesIndex];
     const sectList = sectionList.map((item) =>item);
     setSectionList(sectList);
   };
@@ -35,7 +36,7 @@ function App() {
     const sect = {
       sectionName: sectionName,
       description: desc,
-      quesSet:[{data:'1'}],
+      quesSet:[{id:'1'}],
     };
     sectionList.push(sect);
     const newList = sectionList.map((item) => {
@@ -56,7 +57,7 @@ function App() {
               {sectionList.map((item, i) => {
                 return (
                   <SectionCard
-                    key={item.sectionName}
+                    key={i}
                     sectionName={item.sectionName}
                     description={item.description}
                     quesSet={item.quesSet}
@@ -65,8 +66,9 @@ function App() {
                     sectionIndex={i}
                     addQues={addQues}
                     deleteQues={deleteQues}
+
                   />
-                );
+                )
               })}
               {isNewSection && (
                 <SectionInput

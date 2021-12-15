@@ -16,6 +16,7 @@ function CardLayout(props) {
         copyQues={props.copyQues}
         quesIndex={props.quesIndex}
         deleteQues={props.deleteQues}
+        copyQues={props.copyQues}
       />
     </Stack>
   );

@@ -31,20 +31,9 @@ function SectionCard(props) {
           />
         </Stack>
       </Box>
-      {/* {props.quesSet.length === 0 && (
-        <CardLayout
-          addSection={props.addSection}
-          handleIsNewSection={props.handleIsNewSection}
-          sectionIndex={props.sectionIndex}
-          quesSet={props.quesSet}
-          addQues={props.addQues}
-          quesIndex={0}
-          deleteQues={props.deleteQues}
-        />
-      )} */}
       {props.quesSet.map((ques,i) => {
         return <CardLayout
-          key={props.sectionName}
+          key={i}
           addSection={props.addSection}
           handleIsNewSection={props.handleIsNewSection}
           sectionIndex={props.sectionIndex}

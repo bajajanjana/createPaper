@@ -26,7 +26,7 @@ function VerticalBar(props) {
           <Center>
             <img src={add}
             onClick={()=>{
-              props.addQues(props.quesIndex,props.sectionIndex,{id:''});
+              props.addQues(props.quesIndex,props.sectionIndex);
             }}
             ></img>
           </Center>
