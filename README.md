@@ -1,5 +1,9 @@
 # Create Paper
+
+### Create Section
 ![Screenshot (113)](https://user-images.githubusercontent.com/59495227/149770264-ba602275-aba8-4b53-a700-60bc92478a7c.png)
+### Question Formats
+![Screenshot (129)](https://user-images.githubusercontent.com/59495227/149771772-f2aa4049-a7a8-4286-8e0c-41a2671af585.png)
 
 #### Create Paper is an application that helps to draft question papers with different sections and formats. 
 
